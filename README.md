@@ -1,2 +1,10 @@
 # heroisApi
-Gerenciador de Herois da Marvel - Digital Innovation One
+## Marvel heroes management API
+
+### This api was created using the following technologies:
+
+* Spring boot web flux
+* DynamoDB database
+* JUnit
+* Maven
+* Lombok 
