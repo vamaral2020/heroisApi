@@ -8,32 +8,35 @@ import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRep
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.StringUtils;
-//import org.springframework.util.springUtils;
+import software.amazon.awssdk.utils.StringUtils;
 
 @Configuration
 @EnableDynamoDBRepositories
 public class DynamoConfig {
-    @Value("{$amazon.dynamodb.enpoint}")
+    @Value("${amazon.dynamodb.endpoint}")
     private String amazonDynamoDBEndpoint;
 
-    @Value("{$AWS_access_key_id}")
-    private String amazonAWSAcesskey;
+    @Value("${aws_access_key_id}")
+    private String amazonAWSAccesskey;
 
-    @Value("{$AWS_secret_access_key}")
+    @Value("${aws_secret_access_key}")
     private String amazonAWSSecretKey;
 
     @Bean
-    public AmazonDynamoDB amazonDynamonDB(){
-        AmazonDynamoDB amazonDynamoDB = new AmazonDynamoDBClient(amazonAWSCredentials());
-        if(!StringUtils.isEmpty(amazonDynamoDBEndpoint)){
+    public AmazonDynamoDB amazonDynamoDB() {
+        AmazonDynamoDB amazonDynamoDB
+                = new AmazonDynamoDBClient(amazonAWSCredentials());
+
+        if (!StringUtils.isEmpty(amazonDynamoDBEndpoint)) {
             amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
         }
+
         return amazonDynamoDB;
     }
 
     @Bean
-    public AWSCredentials amazonAWSCredentials(){
-        return new BasicAWSCredentials(amazonAWSAcesskey, amazonAWSSecretKey);
+    public AWSCredentials amazonAWSCredentials() {
+        return new BasicAWSCredentials(
+                amazonAWSAccesskey, amazonAWSSecretKey);
     }
 }

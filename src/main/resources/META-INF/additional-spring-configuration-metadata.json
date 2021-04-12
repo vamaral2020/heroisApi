@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "amazon.dynamodb.endpoint",
+      "type": "java.lang.String",
+      "description": "Description for amazon.dynamodb.endpoint."
+    },
+    {
+      "name": "aws_access_key_id",
+      "type": "java.lang.String",
+      "description": "Description for aws_access_key_id."
+    }
+  ] }
